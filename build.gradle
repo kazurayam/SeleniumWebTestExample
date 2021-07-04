@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'com.kazurayam'
+version '0.1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.5'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    testCompile 'io.github.bonigarcia:webdrivermanager:4.4.3'
+}
+
+test {
+    useJUnitPlatform()
+
+}
