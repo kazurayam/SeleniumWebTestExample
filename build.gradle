@@ -18,6 +18,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testCompile 'io.github.bonigarcia:webdrivermanager:4.4.3'
+    // https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot
+    implementation group: 'ru.yandex.qatools.ashot', name: 'ashot', version: '1.5.4'
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.31'
 }
 
 test {
