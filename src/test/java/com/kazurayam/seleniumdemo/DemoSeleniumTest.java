@@ -2,22 +2,36 @@ package com.kazurayam.seleniumdemo;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.TimeUnit;
 
+//@Disabled
 public class DemoSeleniumTest {
 
-    private static WebDriver driver;
+    private static Logger logger = LoggerFactory.getLogger(DemoSeleniumTest.class);
+
+    private WebDriver driver;
 
     @BeforeAll
-    public static void setUp()
+    public static void beforeAll() {
+        logger.info("@BeforeAll was called");
+    }
+
+    @BeforeEach
+    public void setUp()
     {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -40,14 +54,20 @@ public class DemoSeleniumTest {
         passwordTxt.sendKeys("SuperSecretPassword!");
         WebElement submitBtn = driver.findElement(By.className("radius"));
         submitBtn.click();
-        System.out.println("Current URL is:" + driver.getCurrentUrl());
+        logger.info("Current URL is:" + driver.getCurrentUrl());
         Assertions.assertTrue(driver.getCurrentUrl().contains("secure"));
     }
 
-    @AfterAll
-    public static void tearDown(){
+    @AfterEach
+    public void tearDown(){
         if (driver != null) {
             driver.quit();
         }
     }
+
+    @AfterAll
+    public static void afterAll() {
+        logger.info("@AfterAll was called");
+    }
+
 }
